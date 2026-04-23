@@ -149,19 +149,17 @@ export default function Home() {
                 program.programId
             );
 
-            const [icoAtaPda] = await PublicKey.findProgramAddress(
-                [Buffer.from("ico-ata"), icoMint.toBuffer()],
+            // Correct seed: [b"ico-vault", mint]
+            const [icoVault] = await PublicKey.findProgramAddress(
+                [Buffer.from("ico-vault"), icoMint.toBuffer()],
                 program.programId
             );
-
-            const adminAta = await getAssociatedTokenAddress(icoMint, wallet.publicKey);
-            const rawAmount = new BN(val * 1e9);
 
             await program.methods
                 .initialize(priceInLamports)
                 .accounts({
                     icoState: statePda,
-                    icoAtaPda: icoAtaPda,
+                    icoVault: icoVault,
                     icoMint: icoMint,
                     admin: wallet.publicKey,
                     systemProgram: SystemProgram.programId,
@@ -171,15 +169,6 @@ export default function Home() {
                 .rpc();
 
             toast.success("ICO Contract Initialized!");
-            
-            // Now transfer the tokens to the vault
-            // Note: In the new contract structure, create_ico_ata was combined into initialize
-            // but the transfer needs to happen. 
-            // Actually, looking at the contract code I wrote: 
-            // initialize only sets state. 
-            // I should probably add a transfer call or make sure admin deposits.
-            
-            toast.success("Please deposit tokens to the vault next.");
             await fetchIcoData();
         } catch (error) {
             console.error("Error initializing ICO:", error);
@@ -221,8 +210,8 @@ export default function Home() {
                 program.programId
             );
 
-            const [icoAtaPda] = await PublicKey.findProgramAddress(
-                [Buffer.from("ico-ata"), icoMint.toBuffer()],
+            const [icoVault] = await PublicKey.findProgramAddress(
+                [Buffer.from("ico-vault"), icoMint.toBuffer()],
                 program.programId
             );
 
@@ -248,9 +237,9 @@ export default function Home() {
                 .buyTokens(rawAmount)
                 .accounts({
                     icoState: statePda,
-                    icoAtaPda: icoAtaPda,
+                    icoVault: icoVault,
                     icoMint: icoMint,
-                    userAta: userAta,
+                    userTokenAccount: userAta,
                     user: wallet.publicKey,
                     admin: icoData.admin,
                     tokenProgram: TOKEN_PROGRAM_ID,

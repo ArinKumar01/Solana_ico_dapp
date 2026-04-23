@@ -168,10 +168,25 @@ const Admin = ({
               {/* Interaction Section */}
               <div className="space-y-6 pt-4 border-t border-gray-800">
                 {!icoData && isAdmin && (
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <label className="text-gray-400 text-sm mb-2 block font-medium">
+                        Initial Total Supply
+                      </label>
+                      <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder="e.g. 1000000"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-2xl px-6 py-4 text-white text-xl font-bold focus:outline-none focus:border-emerald-500 transition-all"
+                      />
+                      <div className="absolute right-4 top-[42px] px-3 py-1 bg-gray-700 rounded-lg text-sm font-bold text-gray-300">
+                        {TOKEN_SYMBOL}
+                      </div>
+                    </div>
                     <button
                       onClick={createIcoAta}
-                      disabled={loading}
+                      disabled={loading || !amount}
                       className="w-full bg-gradient-to-r from-purple-600 to-emerald-600 h-16 rounded-2xl text-white font-bold text-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
                     >
                       {loading ? (
@@ -187,7 +202,7 @@ const Admin = ({
                       )}
                     </button>
                     <p className="text-[10px] text-gray-500 text-center px-4 uppercase tracking-widest">
-                      This will create the global state PDA and initialize the Token Vault
+                      Enter the total tokens to allocate for this presale
                     </p>
                   </div>
                 )}
