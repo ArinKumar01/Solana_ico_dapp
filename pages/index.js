@@ -29,6 +29,9 @@ import {
 
 import IDL from "../lib/idl.json";
 
+/** Raw token units per 1.0 token; must match on-chain buy_tokens / SPL mint decimals (9). */
+const SPL_TOKEN_RAW_PER_TOKEN = 1_000_000_000;
+
 // Must match Anchor.toml / declare_id! (same as lib/idl.json "address")
 const PROGRAM_ID_STR = "3a6G9ij8kj6m6fZp2GJDW47NyZ5Kumv4BCwFbtpH6M3L";
 const DEFAULT_ICO_MINT = "8feMvB6goi4XdnkqjQRjUoAvksGB8ygqcjXcwDWV6JRh";
@@ -51,11 +54,15 @@ export default function Home() {
             commitment: "confirmed",
         });
 
-        const pid = new PublicKey(
-            process.env.NEXT_PUBLIC_PROGRAM_ID || PROGRAM_ID_STR
-        );
-        const idl = { ...IDL, address: pid.toBase58() };
-        return new Program(idl, provider);
+        // Program ID must match on-chain binary + IDL "address" or you get 101 / sim failures.
+        const idlAddr = IDL.address || PROGRAM_ID_STR;
+        const envPid = process.env.NEXT_PUBLIC_PROGRAM_ID;
+        if (envPid && envPid !== idlAddr) {
+            console.warn(
+                `[Anchor] NEXT_PUBLIC_PROGRAM_ID (${envPid}) != IDL.address (${idlAddr}). Using IDL.address.`
+            );
+        }
+        return new Program(IDL, provider);
     }, [connection, wallet]);
 
     const fetchUserSolBalance = useCallback(async () => {
@@ -145,7 +152,9 @@ export default function Home() {
             const icoMintStr = process.env.NEXT_PUBLIC_ICO_MINT || DEFAULT_ICO_MINT;
             const icoMint = new PublicKey(icoMintStr);
             const solPrice = parseFloat(process.env.NEXT_PUBLIC_PER_TOKEN_SOL_PRICE || "0.001");
-            const priceInLamports = new BN(solPrice * LAMPORTS_PER_SOL);
+            const priceInLamports = new BN(
+                Math.round(solPrice * LAMPORTS_PER_SOL)
+            );
 
             const [statePda] = await PublicKey.findProgramAddress(
                 [Buffer.from("ico-state")],
@@ -197,12 +206,21 @@ export default function Home() {
                 return;
             }
 
-            const solPrice = icoData.pricePerToken.toNumber() / LAMPORTS_PER_SOL;
-            const solCost = val * solPrice;
-            const balance = await connection.getBalance(wallet.publicKey);
+            const rawAmount = new BN(Math.floor(val * SPL_TOKEN_RAW_PER_TOKEN));
+            const priceLamports = new BN(icoData.pricePerToken.toString());
+            const solCostLamports = rawAmount.mul(priceLamports).div(
+                new BN(SPL_TOKEN_RAW_PER_TOKEN)
+            );
+            console.log("Sending lamports (SOL cost):", solCostLamports.toString());
 
-            if (balance < solCost * LAMPORTS_PER_SOL + 10000) {
-                toast.error(`Insufficient balance. Need ${solCost.toFixed(4)} SOL`);
+            const balance = await connection.getBalance(wallet.publicKey);
+            const need = solCostLamports.add(new BN(10_000));
+            if (new BN(balance).lt(need)) {
+                const solCostFloat =
+                    solCostLamports.toNumber() / LAMPORTS_PER_SOL;
+                toast.error(
+                    `Insufficient balance. Need ${solCostFloat.toFixed(6)} SOL`
+                );
                 setLoading(false);
                 return;
             }
@@ -234,8 +252,6 @@ export default function Home() {
                 );
             }
 
-            const rawAmount = new BN(val * 1e9);
-
             await program.methods
                 .buyTokens(rawAmount)
                 .accounts({
@@ -244,7 +260,10 @@ export default function Home() {
                     icoMint: icoMint,
                     userTokenAccount: userAta,
                     user: wallet.publicKey,
-                    admin: icoData.admin,
+                    admin:
+                        icoData.admin instanceof PublicKey
+                            ? icoData.admin
+                            : new PublicKey(icoData.admin),
                     tokenProgram: TOKEN_PROGRAM_ID,
                     systemProgram: SystemProgram.programId,
                 })

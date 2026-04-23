@@ -10,7 +10,8 @@ pub mod solana_ico {
 
     pub fn initialize(
         ctx: Context<Initialize>,
-        price_per_token: u64, // Price in lamports (e.g., 1,000,000 = 0.001 SOL)
+        /// Lamports charged per **1.0** token (9 decimals). `buy_tokens` divides by 1e9 when multiplying by raw `amount`.
+        price_per_token: u64,
     ) -> Result<()> {
         let ico_state = &mut ctx.accounts.ico_state;
         ico_state.admin = *ctx.accounts.admin.key;
@@ -26,10 +27,14 @@ pub mod solana_ico {
     pub fn buy_tokens(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
         let ico_state = &mut ctx.accounts.ico_state;
         
-        // 1. Calculate SOL Cost
-        let sol_cost = amount
-            .checked_mul(ico_state.price_per_token)
+        // 1. Calculate SOL cost: `amount` is raw token units (1e9 = 1 token with 9 decimals).
+        //    `price_per_token` is lamports per 1.0 whole token (same as initialize()).
+        let sol_cost_u128 = (amount as u128)
+            .checked_mul(ico_state.price_per_token as u128)
+            .ok_or(ErrorCode::MathOverflow)?
+            .checked_div(1_000_000_000u128)
             .ok_or(ErrorCode::MathOverflow)?;
+        let sol_cost: u64 = u64::try_from(sol_cost_u128).map_err(|_| ErrorCode::MathOverflow)?;
 
         // 2. Transfer SOL from User to Admin
         let transfer_sol_ix = system_instruction::transfer(

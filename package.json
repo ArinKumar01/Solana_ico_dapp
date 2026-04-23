@@ -10,7 +10,8 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "clear": "rm -rf node_modules package-lock.json .next"
+    "clear": "rm -rf node_modules package-lock.json .next",
+    "sync-idl": "node scripts/sync-idl.js"
   },
   "dependencies": {
     "@ledgerhq/errors": "^6.33.0",

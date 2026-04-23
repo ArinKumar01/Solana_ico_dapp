@@ -156,7 +156,7 @@ const HeroSection = ({
                     </div>
                     <div className="flex justify-between mt-3 text-xs text-gray-500">
                        <span>Raised: ${(parseFloat(icoData?.tokensSold?.toString() || "0") / 1e9 * parseFloat(PER_TOKEN_USD_PRICE)).toLocaleString()}</span>
-                       <span>Remaining: {icoData ? (parseFloat(icoData.totalTokens.toString()) - parseFloat(icoData.tokensSold.toString())) / 1e9 : 0} {TOKEN_SYMBOL}</span>
+                       <span>Remaining: {icoData ? Math.max(0, (parseFloat(process.env.NEXT_PUBLIC_TOKEN_SUPPLY || "1000000000") - (icoData.tokensSold?.toNumber?.() ?? 0)) / 1e9) : 0} {TOKEN_SYMBOL}</span>
                     </div>
                   </div>
 
