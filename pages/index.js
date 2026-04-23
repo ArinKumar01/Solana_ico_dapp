@@ -7,7 +7,7 @@ import {
     Transaction,
     LAMPORTS_PER_SOL
 } from "@solana/web3.js";
-import { Program, AnchorProvider, BN } from "@project-serum/anchor";
+import { Program, AnchorProvider, BN } from "@coral-xyz/anchor";
 import {
     TOKEN_PROGRAM_ID,
     getAssociatedTokenAddress,
@@ -29,8 +29,8 @@ import {
 
 import IDL from "../lib/idl.json";
 
-// Default values for development
-const DEFAULT_PROGRAM_ID = "2wampQTiA3TTzXoyMkTkbZ7V666TvFR2qvgMHQMaesMt";
+// Must match Anchor.toml / declare_id! (same as lib/idl.json "address")
+const PROGRAM_ID_STR = "3a6G9ij8kj6m6fZp2GJDW47NyZ5Kumv4BCwFbtpH6M3L";
 const DEFAULT_ICO_MINT = "8feMvB6goi4XdnkqjQRjUoAvksGB8ygqcjXcwDWV6JRh";
 
 export default function Home() {
@@ -51,8 +51,11 @@ export default function Home() {
             commitment: "confirmed",
         });
 
-        const programId = new PublicKey(process.env.NEXT_PUBLIC_PROGRAM_ID || DEFAULT_PROGRAM_ID);
-        return new Program(IDL, programId, provider);
+        const pid = new PublicKey(
+            process.env.NEXT_PUBLIC_PROGRAM_ID || PROGRAM_ID_STR
+        );
+        const idl = { ...IDL, address: pid.toBase58() };
+        return new Program(idl, provider);
     }, [connection, wallet]);
 
     const fetchUserSolBalance = useCallback(async () => {
