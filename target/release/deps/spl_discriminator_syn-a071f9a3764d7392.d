@@ -1,0 +1,9 @@
+/mnt/c/Users/arin/solana ico/target/release/deps/spl_discriminator_syn-a071f9a3764d7392.d: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/parser.rs
+
+/mnt/c/Users/arin/solana ico/target/release/deps/libspl_discriminator_syn-a071f9a3764d7392.rlib: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/parser.rs
+
+/mnt/c/Users/arin/solana ico/target/release/deps/libspl_discriminator_syn-a071f9a3764d7392.rmeta: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/parser.rs
+
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/lib.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/error.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-discriminator-syn-0.2.1/src/parser.rs:

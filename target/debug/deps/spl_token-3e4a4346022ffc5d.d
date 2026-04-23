@@ -1,0 +1,12 @@
+/mnt/c/Users/arin/solana ico/target/debug/deps/spl_token-3e4a4346022ffc5d.d: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/instruction.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/native_mint.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/processor.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/state.rs
+
+/mnt/c/Users/arin/solana ico/target/debug/deps/libspl_token-3e4a4346022ffc5d.so: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/instruction.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/native_mint.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/processor.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/state.rs
+
+/mnt/c/Users/arin/solana ico/target/debug/deps/libspl_token-3e4a4346022ffc5d.rlib: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/error.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/instruction.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/native_mint.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/processor.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/state.rs
+
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/lib.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/error.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/instruction.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/native_mint.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/processor.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spl-token-4.0.3/src/state.rs:

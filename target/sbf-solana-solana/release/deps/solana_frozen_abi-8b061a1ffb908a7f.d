@@ -1,0 +1,10 @@
+/mnt/c/Users/arin/solana ico/target/sbf-solana-solana/release/deps/solana_frozen_abi-8b061a1ffb908a7f.d: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_digester.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_example.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/hash.rs
+
+/mnt/c/Users/arin/solana ico/target/sbf-solana-solana/release/deps/libsolana_frozen_abi-8b061a1ffb908a7f.rlib: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_digester.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_example.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/hash.rs
+
+/mnt/c/Users/arin/solana ico/target/sbf-solana-solana/release/deps/libsolana_frozen_abi-8b061a1ffb908a7f.rmeta: /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/lib.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_digester.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_example.rs /home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/hash.rs
+
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/lib.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_digester.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/abi_example.rs:
+/home/arin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/solana-frozen-abi-1.18.26/src/hash.rs:
